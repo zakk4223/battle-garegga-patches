@@ -14,7 +14,7 @@ Program rom patches for Battle Garegga that add some convenience and functionali
    rate for respective player.
  - Rank display. Real time display of current game rank.
  - Rank change display: Per-frame display of rank change during the
-   fame. This excludes per-frame rank adjustments and any rank changes
+   frame. This excludes per-frame rank adjustments and any rank changes
    due to shooting (normal and option).
  - Rank percentage display. Should line up with the rank percentage in
    the M2 port.

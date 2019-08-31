@@ -258,6 +258,14 @@ player_2_af:
 ; then the remainder
 rank_display:
 	lea ($500648),a5
+        btst #1, ($10a6b2)
+        bne change_rank_disp
+        btst #2, ($10a6b2)
+        bne change_rank_disp
+        bra start_rank_disp
+change_rank_disp:
+        lea ($500646),a5
+start_rank_disp:
 	clr.l d1
 	move.l ($10C9D2),d1 
         jsr write_asciihex_to_txt
@@ -268,10 +276,10 @@ rank_display:
 ; Calculate rank percentage
         tst ($10C9D2)
         beq copy_to_txtmem_tail 
-        move.l ($10C9DE),d1
+        move.l #$F00000,d1
         sub.l ($10C9D2),d1
-        move.l ($10C9DE),d3 
-        sub.l ($10C9DA), d3
+        move.l #$F00000,d3 
+        sub.l #$200000, d3
         divu #1000,d3
         swap d3
         clr.w d3
@@ -348,16 +356,22 @@ rank_adjust_rts:
         beq rank_display_expired
 real_adj_rts:
         rts
-
 write_rank_adjust:
-        
         move.l ($100D92),d1
         clr.l ($100D92)
         tst.l d1
-        bne rank_write_is_zero
+        bne rank_write_not_zero
         rts
-rank_write_is_zero:
+rank_write_not_zero:
         lea ($500646),a5
+        btst #1, ($10a6b2)
+        bne change_rank_adj
+        btst #6, ($10a6b2)
+        bne change_rank_adj
+        bra start_rank_adj
+change_rank_adj:
+        lea ($500644),a5
+start_rank_adj:
         cmp.l #$FFFFFFFF,d1
         beq clear_rank_digits
         move.w #$C400,d0
@@ -394,16 +408,6 @@ rank_display_expired:
 	clr.w ($100D88)
         clr.l ($100D82)
 	move.l #$FFFFFFFF, ($100D92)
-;        lea ($5005C6),a5
-;        move.w #$0000,(a5)
-;        move.w #$0000,$80(a5)
-;        move.w #$0000,$100(a5)
-;        move.w #$0000,$180(a5)
-;        move.w #$0000,$200(a5)
-;        move.w #$0000,$280(a5)
-;        move.w #$0000,$300(a5)
-;        move.w #$0000,$380(a5)
-;        move.w #$0000,$400(a5)
 	rts
 high_score_format_patch:
         movem.l d0-a6,-(sp)

@@ -56,6 +56,10 @@ FREE_OFFSET = $52430
         ORG $10CD8
 	move.b (a6,d1), d1
 
+; Ignore the stage edit dip (accessible via C+Start)
+	ORG $12D18
+	andi.w #$7, d0
+
 ; Jump to our custom rom/ram test code
 	ORG $159CA
 	jmp test_rom_ram_0
@@ -236,6 +240,8 @@ digit_is_zero:
 ; After the main program writes a bunch of the txt hud (scores, etc)
 ; There's a jump here. This writes autofire rates and rank display
 custom_values_display:
+        btst #3, ($21c035)
+        beq custom_values_end
 	lea ($500004),a5
         lea autofire_lookup_table,a4
 	move.w #$C400,d0
@@ -308,6 +314,7 @@ start_rank_disp:
         move.w #$0000,(a5)
         move.l ($100D92),d1
         jsr write_rank_adjust  
+custom_values_end:
         jmp copy_to_txtmem_tail
 autofire_lookup_table:
 	dc.b 60

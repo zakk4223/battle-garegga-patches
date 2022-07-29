@@ -149,9 +149,44 @@ quick_reset:
 	andi.b #$F0,d1
 	cmpi.b #$F0,d1
 	beq return_to_copyright_main
+	move.b ($101771), d1
+	andi.b #$F0,d1
+	cmpi.b #$F0,d1
+	beq return_to_copyright_main
+	move.b ($101679),d1
+	andi.b #$A0,d1
+	cmpi.b #$A0,d1
+	beq next_autofire_p1
+	move.b #$0, ($100D90)
+	move.b ($101771), d1
+	andi.b #$A0, d1
+	cmpi.b #$A0,d1
+	beq next_autofire_p2
+	move.b #$0, ($100D91)
+autofire_done:
 	jsr $984
 	jsr $9AC
 	jmp $8C8
+next_autofire_p1:
+	move.b ($100D90),d1
+	tst.b d1
+	bne autofire_done	
+	tst.b ($10167C)
+	beq af_rts 
+	sub.b #$1, ($10167C)	
+	move.b #$1, ($100D90)
+	jmp af_rts
+next_autofire_p2:
+	move.b ($100D91),d1
+	tst.b d1
+	bne autofire_done
+	tst.b ($101774)
+	beq af_rts
+	sub.b #$1, ($101774)
+	move.b #$1, ($100D91)
+af_rts:
+	rts
+	;jmp autofire_done
 return_to_copyright_main:
 	jmp $310
         dc.b 0

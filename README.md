@@ -7,6 +7,7 @@ Program rom patches for Battle Garegga that add some convenience and functionali
  - No rank carry over between credits. Rank starts at power on default
    every credit.
  - Item drop order reset to initial value every credit
+ - Item non collected counts reset to initial values every credit
  - Quick reset: start+ABC resets to the copyright screen
  - Scoreboard display bug fixed. Top scores will show the proper letter
    instead of punctuation for 10M+

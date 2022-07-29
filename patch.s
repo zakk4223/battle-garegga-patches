@@ -22,7 +22,10 @@ FREE_OFFSET = $52430
 
 	ORG $9A2 
 	dc.w $F0BB
-
+; Reset passed items count
+	ORG $B86
+	clr.l ($109CB8) ; reset $109CB8 count (unknown and already present in code), small shot count ($109CB9 already present in code), small bomb count ($109CBA) and option count ($109CBB)
+	clr.b ($109CBC) ; reset medal count ($109CBC)
 ; Reset item drop state
 	ORG $BEE
 	clr.b ($109CB4) ; re-initialize enemy kill count for item drop

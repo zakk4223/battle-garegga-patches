@@ -4,6 +4,7 @@ Program rom patches for Battle Garegga that add some convenience and functionali
 
  - Mahou guest characters unlocked.
  - ABC ship type selectable via start button
+ - Selectable autofire rate: Start+B raises autofire rate (8hz, 10hz, 12hz, 15hz, 20hz, 30hz). You cannot decrease the autofire rate.
  - No rank carry over between credits. Rank starts at power on default
    every credit.
  - Item drop order reset to initial value every credit

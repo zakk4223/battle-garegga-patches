@@ -171,25 +171,25 @@ autofire_done:
 	jsr $9AC
 	jmp $8C8
 next_autofire_p1:
+	andi.b #$5F, ($101678)
 	move.b ($100D90),d1
 	tst.b d1
 	bne autofire_done	
-	tst.b ($10167C)
-	beq af_rts 
+	cmpi.b #$1, ($10167C)
+	beq autofire_done 
 	sub.b #$1, ($10167C)	
 	move.b #$1, ($100D90)
-	jmp af_rts
+	jmp autofire_done 
 next_autofire_p2:
+	andi.b #$5F, ($101770)
 	move.b ($100D91),d1
 	tst.b d1
 	bne autofire_done
-	tst.b ($101774)
-	beq af_rts
+	cmpi.b #$1, ($101774)
+	beq autofire_done 
 	sub.b #$1, ($101774)
 	move.b #$1, ($100D91)
-af_rts:
-	rts
-	;jmp autofire_done
+	jmp autofire_done
 return_to_copyright_main:
 	jmp $310
         dc.b 0

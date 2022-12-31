@@ -1,15 +1,25 @@
-# **Battle Garegga quality of life patches.**
+# **Battle Garegga Quality of Life Patches**
 
-Program rom patches for Battle Garegga that add some convenience and functionality:
+#### MAME
+Extract the MAME `bgaregga` rom set. Use your favorite IPS patch applier to patch `prg0.bin` and `prg1.bin` using the respective IPS files in this repo. MAME will complain about incorrect rom checksums. You can ignore this and/or may need to launch the game directly as an argument e.g.  `./mame bgaregga`
 
- - Mahou guest characters unlocked.
- - ABC ship type selectable via start button
- - Selectable autofire rate: Start+B raises autofire rate (8hz, 10hz, 12hz, 15hz, 20hz, 30hz). You cannot decrease the autofire rate.
+#### MiSTer
+Use the `.mra` file included in the repo.
+
+
+### Features
+
+ - ROM RAM Check skipped.
+ - Mahou guest fighters unlocked.
+   -  Gain, Chitta, Miyamoto, Bornham. Normally unlocked using a code at the title screen.
+ - ABC ship type selectable via Start button
+ - Selectable autofire rate: Start+B raises autofire rate (8hz, 10hz, 12hz, 15hz, 20hz, 30hz).
+   - Autofire can still be set by tapping and holding and *can only be increased*, like in the original game.
  - No rank carry over between credits. Rank starts at power on default
    every credit.
  - Item drop order reset to initial value every credit
  - Item non collected counts reset to initial values every credit
- - Quick reset: start+ABC resets to the copyright screen
+ - Quick reset: Start+ABC resets to the copyright screen
  - Scoreboard display bug fixed. Top scores will show the proper letter
    instead of punctuation for 10M+
  - Autofire rate display. Bottom left and right display current autofire
@@ -24,11 +34,7 @@ Program rom patches for Battle Garegga that add some convenience and functionali
 
 Rank and rank change are shown in hexadecimal. Per frame is shown in decimal. This is because the M2 port shows the per-frame rank in decimal too; I wanted them to match up for less (personal) confusion.
 
-## How to use
-
-Extract the mame bgaregga rom set. Use your favorite IPS patch applier to patch prg0.bin and prg1.bin using the respective IPS files in this repo
-
-Mame will complain about incorrect rom checksums. You can ignore this.
+NOTE: Stage Edit dip switch must be ON for rate/rank display to appear.
 
 ## Source
 

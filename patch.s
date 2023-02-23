@@ -411,7 +411,7 @@ rank_write_not_zero:
         lea ($500646),a5
         btst #1, ($10a6b2)
         bne change_rank_adj
-        btst #6, ($10a6b2)
+        btst #2, ($10a6b2)
         bne change_rank_adj
         bra start_rank_adj
 change_rank_adj:
